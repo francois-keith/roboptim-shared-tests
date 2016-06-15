@@ -136,6 +136,7 @@ BOOST_FIXTURE_TEST_SUITE (distanceToSphere, TestSuiteConfiguration)
 
 BOOST_AUTO_TEST_CASE (distanceToSphere_problem1)
 {
+  std::cout << "distanceToSphere_problem1 " << std::endl;
   using namespace roboptim;
   using namespace roboptim::distanceToSphere;
 
@@ -177,13 +178,16 @@ BOOST_AUTO_TEST_CASE (distanceToSphere_problem1)
   BOOST_CHECK_SMALL_OR_CLOSE ((*soq) (x)[0], expectedResult.f0, f0_tol);
 
   // Initialize solver.
+  std::cout << "SOLVER_NAME " << SOLVER_NAME << std::endl;
   SolverFactory<solver_t> factory (SOLVER_NAME, problem);
   solver_t& solver = factory ();
 
   // Set optimization logger
+  std::cout << "SET_OPTIMIZATION_LOGGER " << "roboptim/distance-to-sphere" << std::endl;
   SET_OPTIMIZATION_LOGGER (solver, "roboptim/distance-to-sphere");
 
   // Set optional log file for debugging
+  std::cout << "solver " << solver << std::endl;
   SET_LOG_FILE (solver);
 
   // Compute the minimum and retrieve the result.
